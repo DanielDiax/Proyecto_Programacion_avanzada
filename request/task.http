@@ -1,0 +1,53 @@
+//Rest Client
+###
+
+//Consultar todos
+GET http://localhost:3000/api/tasks
+
+###
+
+
+//Guardar usuario
+POST http://localhost:3000/api/tasks
+Content-Type: application/json
+
+{   
+    "email": "diaz@api.com",
+    "password": "202021",
+    "profile": "true"
+}
+
+###
+
+//Consulta un unico dato por id /// en fallo
+GET http://localhost:3000/api/tasks/61434cc7198dd55c283b3532
+
+
+###
+
+//Consulta dato por email
+POST http://localhost:3000/api/tasks/login
+Content-Type: application/json
+
+{   
+    "email": "Diana@api.com"
+}
+###
+
+//elimina dato por id
+DELETE http://localhost:3000/api/tasks/61438ec58eda5d303998915d
+
+###
+
+//Consulta todos los usuarios con perfil true
+GET http://localhost:3000/api/tasks/profile
+
+
+###
+//Actualizar usuario
+PUT  http://localhost:3000/api/tasks/61434cc7198dd55c283b3532
+Content-Type: application/json
+
+{
+    "email": "Daniel@mongo.com"
+}
