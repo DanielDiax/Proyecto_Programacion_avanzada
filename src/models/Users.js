@@ -1,7 +1,8 @@
 import { Schema, model } from "mongoose";
 var mongoose = require("mongoose");
+import  mongoosePaginate  from "mongoose-paginate-v2";
 
-const taskSchema = new Schema(
+const userSchema = new Schema(
   {
     email: {
       // de esta manera puedo dar las condiciones de los parametros
@@ -26,4 +27,6 @@ const taskSchema = new Schema(
   }
 );
 
-export default model("Task", taskSchema);
+
+userSchema.plugin(mongoosePaginate);
+export default model("User", userSchema);

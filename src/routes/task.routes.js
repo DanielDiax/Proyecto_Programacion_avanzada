@@ -1,5 +1,5 @@
 import { request, Router } from "express";
-import * as taskCtrl from "../controllers/task.controller";
+import * as userCtrl from "../controllers/user.controller";
 
 const router = Router();
 
@@ -8,18 +8,18 @@ const router = Router();
 // o un texto como profile o login el programa creera que todos son id.
 // teniendo esto en cuenta las consultas con id deben ir de ultimo
 
-router.get("/", taskCtrl.findGetAllTask);
+router.get("/", userCtrl.findGetAllUser);
 
-router.get("/:profile", taskCtrl.findAllTrueUsers);
+router.get("/:id", userCtrl.findOneUser);
 
-router.post("/", taskCtrl.createUser);
+router.get("/:profile", userCtrl.findAllTrueUsers);
 
-router.post("/:login", taskCtrl.findOneUser);
+router.post("/", userCtrl.createUser);
 
-router.get("/:id", taskCtrl.findOneTask);
+router.post("/:login", userCtrl.findUser);
 
-router.delete("/:id", taskCtrl.deleteTask);
+router.delete("/:id", userCtrl.deleteUser);
 
-router.put("/:id", taskCtrl.updateUser);
+router.put("/:id", userCtrl.updateUser);
 
 export default router;
