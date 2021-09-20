@@ -16,7 +16,7 @@ router.get("/:profile", userCtrl.findAllTrueUsers);
 
 router.post("/", userCtrl.createUser);
 
-router.post("/:login", userCtrl.findUser);
+router.post("/login", userCtrl.findUser);
 
 router.delete("/:id", userCtrl.deleteUser);
 

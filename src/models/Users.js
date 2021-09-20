@@ -16,6 +16,7 @@ const userSchema = new Schema(
     },
     profile: {
       type: Boolean,
+      /* required: false, */
       default: false,
     },
   },

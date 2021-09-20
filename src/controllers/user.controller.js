@@ -56,10 +56,17 @@ export const findOneUser = async (req, res) => {
 
 // Rastreo un dato por email -- falta condicionar la busqueda
 export const findUser = async (req, res) => {
+  console.log(req);
+  if(req.body.email == ""){
+    return res
+    .status(400)
+    .send({ message: "Email cannot be empty" });
+  }
   try {
-    const users = await User.findOne(req.params.email);
-    console.log(users);
-    res.json(users);
+    const {email} = req.body.email
+    const user = await User.findOne(email);
+    console.log(user);
+    res.json(user);
   } catch (error) {
     res.status(500).json({
       message: error.message || "Uups something goes wrong searching the user",
@@ -71,9 +78,10 @@ export const findUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const {id} = req.params;
-    await User.findByIdAndDelete(id);
+    const detelted = await User.findByIdAndDelete(id);
+    console.log(detelted);
     res.json({
-    message: " User were deleted successfully",
+      message: " User were deleted successfully",
   });
   } catch (error) {
     res.status(500).json({

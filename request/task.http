@@ -12,9 +12,9 @@ POST http://localhost:3000/api/tasks
 Content-Type: application/json
 
 {   
-    "email": "sola@api.com",
-    "password": "222222",
-    "profile": "false"
+    "email": "sol@api.com",
+    "password": "202311",
+    "profile": "true"
 }
 
 ###
@@ -34,7 +34,7 @@ POST  http://localhost:3000/api/tasks/login
 ###
 
 //elimina dato por id
-DELETE http://localhost:3000/api/tasks/6143944ba8ecd10c41914b02
+DELETE http://localhost:3000/api/tasks/6148fd162ce07d16c26ea319
 
 ###
 
@@ -44,9 +44,9 @@ GET http://localhost:3000/api/tasks/profile
 
 ###
 //Actualizar usuario
-PUT  http://localhost:3000/api/tasks/61436c001b37e2fc02b54828
+PUT  http://localhost:3000/api/tasks/6148fe1840777134d6bf90c5
 Content-Type: application/json
 
 {
-    "email": "josediaz@mongo.com"
+    "password": "999999"
 }
