@@ -9,7 +9,6 @@ Este mismo debe ser instalado de la siguiente manera ya que las dependencias las
 npm i @babel/core @babel/cli @babel/node @babel/preset-env -D
 -
 Ademas de: 
--
 cors 
 dotenv 
 express
