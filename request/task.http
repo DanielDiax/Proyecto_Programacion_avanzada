@@ -2,31 +2,36 @@
 ###
 
 //Consultar todos
-GET http://localhost:3000/api/tasks
+GET http://localhost:3000/api/users
+
+###
+
+//Consultar todos Con limites a travez de la url
+GET http://localhost:3000/api/users?size=5&page=1
 
 ###
 
 
 //Guardar usuario
-POST http://localhost:3000/api/tasks
+POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {   
-    "email": "sol@api.com",
-    "password": "202311",
+    "email": "san@api.com",
+    "password": "999666",
     "profile": "true"
 }
 
 ###
 
 //Consulta un unico dato por id //
-GET http://localhost:3000/api/tasks/6148e30bd511b0d26362ee4f
+GET http://localhost:3000/api/users/6148c98b99d593aa29b41693
 
 
 ###
 
 //Consulta dato por email
-POST  http://localhost:3000/api/tasks/login
+POST  http://localhost:3000/api/users/login
 
 {   
     "email": "Daniel@mongo.com"
@@ -34,17 +39,17 @@ POST  http://localhost:3000/api/tasks/login
 ###
 
 //elimina dato por id
-DELETE http://localhost:3000/api/tasks/6148fd162ce07d16c26ea319
+DELETE http://localhost:3000/api/users/6148fd162ce07d16c26ea319
 
 ###
 
 //Consulta todos los usuarios con perfil true
-GET http://localhost:3000/api/tasks/profile
+GET http://localhost:3000/api/users/profile
 
 
 ###
 //Actualizar usuario
-PUT  http://localhost:3000/api/tasks/6148fe1840777134d6bf90c5
+PUT  http://localhost:3000/api/users/6148fe1840777134d6bf90c5
 Content-Type: application/json
 
 {

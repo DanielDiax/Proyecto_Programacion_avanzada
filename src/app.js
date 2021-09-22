@@ -3,7 +3,7 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import TaskRoutes from "./routes/user.routes";
+import userRoutes from "./routes/user.routes";
 
 const app = express();
 //settings
@@ -21,6 +21,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to my application" });
 });
 
-app.use("/api/tasks", TaskRoutes);
+app.use("/api/users", userRoutes);
 
 export default app;

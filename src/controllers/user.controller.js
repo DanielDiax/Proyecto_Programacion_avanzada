@@ -1,12 +1,19 @@
 import { request } from "express";
 import { status } from "express/lib/response";
-import User from "../models/Users";
+import User from "../models/Users.model";
+import { getPagination } from "../libs/getPagination"; // se importa la funcion de paginacion 
 
 //rastreo todos los datos
 export const findGetAllUser = async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
+    // se crea el query, que es como un parametro extra de la url. Por lo tanto lo primero es extraer los valores a travez del query siendo size = limit, page = offset
+    const { size, page } = req.query; 
+
+    //El getPagination recibe el size y el page y devuelve un limit y un offset, para validar si devuelve algo.
+    const { limit, offset } = getPagination(size, page);
+
+    const users = await User.paginate({}, { offset, limit });
+    res.json(users); // en realidad ya no devuelve un array sino un objeto
   } catch (error) {
     res.status(500).json({
       message: error.message || "Uups something goes wrong retriving the users",
@@ -56,14 +63,13 @@ export const findOneUser = async (req, res) => {
 
 // Rastreo un dato por email -- falta condicionar la busqueda
 export const findUser = async (req, res) => {
+  debugger
   console.log(req);
-  if(req.body.email == ""){
-    return res
-    .status(400)
-    .send({ message: "Email cannot be empty" });
+  if (req.body.email == "") {
+    return res.status(400).send({ message: "Email cannot be empty" });
   }
   try {
-    const {email} = req.body.email
+    const { email } = req.body.email;
     const user = await User.findOne(email);
     console.log(user);
     res.json(user);
@@ -77,18 +83,17 @@ export const findUser = async (req, res) => {
 //eliminar un dato por metodo delete a travez del parametro id
 export const deleteUser = async (req, res) => {
   try {
-    const {id} = req.params;
+    const { id } = req.params;
     const detelted = await User.findByIdAndDelete(id);
     console.log(detelted);
     res.json({
       message: " User were deleted successfully",
-  });
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message || `Cannot delete user with id: ${id}`,
     });
   }
-  
 };
 
 export const findAllTrueUsers = async (req, res) => {
@@ -101,19 +106,17 @@ export const findAllTrueUsers = async (req, res) => {
       message: error.message || "Uups something goes wrong searching the user",
     });
   }
-  
 };
 
 export const updateUser = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.params.id, req.body); // En este ejemplo se actualiza lo que esta en request params id por lo que se envia desde req.body
-  res.json({
-    message: " User were updated successfully",
-  });
+    res.json({
+      message: " User were updated successfully",
+    });
   } catch (error) {
     res.status(500).json({
       message: error.message || "Uups something goes wrong searching the user",
     });
   }
-  
 };
