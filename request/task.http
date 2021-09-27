@@ -2,12 +2,12 @@
 ###
 
 //Consultar todos
-GET http://localhost:3000/api/users
+GET http://localhost:3000/api/users?size=20
 
 ###
 
 //Consultar todos Con limites a travez de la url
-GET http://localhost:3000/api/users?size=5&page=1
+GET http://localhost:3000/api/users?page=1&size=4
 
 ###
 
@@ -17,21 +17,22 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {   
-    "email": "san@api.com",
-    "password": "999666",
+    "email": "lina@api.com",
+    "password": "5599955",
     "profile": "true"
 }
 
 ###
 
 //Consulta un unico dato por id //
-GET http://localhost:3000/api/users/6148c98b99d593aa29b41693
+GET http://localhost:3000/api/users/6151fee68ad5ff63a7426fdd
 
 
 ###
 
 //Consulta dato por email
-POST  http://localhost:3000/api/users/login
+POST    http://localhost:3000/api/users/login
+Content-Type: application/json
 
 {   
     "email": "Daniel@mongo.com"
@@ -39,7 +40,7 @@ POST  http://localhost:3000/api/users/login
 ###
 
 //elimina dato por id
-DELETE http://localhost:3000/api/users/6148fd162ce07d16c26ea319
+DELETE http://localhost:3000/api/users/6151fee68ad5ff63a7426fdd
 
 ###
 
@@ -49,9 +50,10 @@ GET http://localhost:3000/api/users/profile
 
 ###
 //Actualizar usuario
-PUT  http://localhost:3000/api/users/6148fe1840777134d6bf90c5
+PUT  http://localhost:3000/api/users/6151fee68ad5ff63a7426fdd
 Content-Type: application/json
 
 {
-    "password": "999999"
+    "password": "999999",
+    "profile": "false"
 }

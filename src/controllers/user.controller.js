@@ -1,4 +1,4 @@
-import { request } from "express";
+import { query, request } from "express";
 import { status } from "express/lib/response";
 import User from "../models/Users.model";
 import { getPagination } from "../libs/getPagination"; // se importa la funcion de paginacion 
@@ -7,13 +7,22 @@ import { getPagination } from "../libs/getPagination"; // se importa la funcion 
 export const findGetAllUser = async (req, res) => {
   try {
     // se crea el query, que es como un parametro extra de la url. Por lo tanto lo primero es extraer los valores a travez del query siendo size = limit, page = offset
-    const { size, page } = req.query; 
+    const { page, size } = req.query; 
+
+ 
 
     //El getPagination recibe el size y el page y devuelve un limit y un offset, para validar si devuelve algo.
-    const { limit, offset } = getPagination(size, page);
+    const { limit, offset } = getPagination(page, size);
 
     const users = await User.paginate({}, { offset, limit });
-    res.json(users); // en realidad ya no devuelve un array sino un objeto
+    res.json({
+      totalItems: users.totalDocs,
+      users: users.docs,
+      TotalPages: users.totalPages,
+      currentPage: users.page - 1
+    }); 
+    console.log(req.query);
+    console.log(users);
   } catch (error) {
     res.status(500).json({
       message: error.message || "Uups something goes wrong retriving the users",
