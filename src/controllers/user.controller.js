@@ -1,5 +1,3 @@
-import { query, request } from "express";
-import { status } from "express/lib/response";
 import User from "../models/Users.model";
 import { getPagination } from "../libs/getPagination"; // se importa la funcion de paginacion 
 
@@ -8,9 +6,6 @@ export const findGetAllUser = async (req, res) => {
   try {
     // se crea el query, que es como un parametro extra de la url. Por lo tanto lo primero es extraer los valores a travez del query siendo size = limit, page = offset
     const { page, size } = req.query; 
-
- 
-
     //El getPagination recibe el size y el page y devuelve un limit y un offset, para validar si devuelve algo.
     const { limit, offset } = getPagination(page, size);
 
@@ -32,11 +27,6 @@ export const findGetAllUser = async (req, res) => {
 
 //creo usuarios
 export const createUser = async (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    return res
-      .status(400)
-      .send({ message: "Email and password cannot be empty" });
-  }
   try {
     const newuser = new User({
       email: req.body.email,
@@ -74,12 +64,9 @@ export const findOneUser = async (req, res) => {
 export const findUser = async (req, res) => {
   debugger
   console.log(req);
-  if (req.body.email == "") {
-    return res.status(400).send({ message: "Email cannot be empty" });
-  }
   try {
-    const { email } = req.body.email;
-    const user = await User.findOne(email);
+    const {email} = req.body;
+    const user = await User.findOne({email});
     console.log(user);
     res.json(user);
   } catch (error) {

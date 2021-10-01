@@ -7,6 +7,8 @@ const userSchema = new Schema(
     email: {
       // de esta manera puedo dar las condiciones de los parametros
       type: String,
+      unique: true,
+      lowercase: true,
       required: true,
       trim: true, // el trim por ejemplo quita los espacios que trae un parametro de tipo texto
     },
@@ -27,7 +29,6 @@ const userSchema = new Schema(
         updateAd */
   }
 );
-
 
 userSchema.plugin(mongoosePaginate);
 export default model("User", userSchema);
