@@ -1,5 +1,4 @@
 import { check } from 'express-validator'
-import res from 'express/lib/response'
 import { validateResult } from '../helpers/validatehelper'
 
 //import {check} from 'express-validator'
@@ -18,12 +17,6 @@ export const validateCreateUser = [
     .isLength({ min: 8, max: 12 })
     .not()
     .isEmpty(),
-    /* check('profile')
-    .custom((value, {req}) => {
-        if(!value === true){
-            throw new Error('Se escribe el error')
-        }
-    }), */
     (req, res, next) => {
         validateResult(req, res, next)
     },
@@ -59,13 +52,6 @@ export const validateOneUser = [
     .isEmail()
     .isLowercase()
     .not(),
-/*     check('password')
-    .custom((value, {req})=>{
-        if (!'password'){
-            value = 'password'
-            value.setValue = "";
-        }
-    }), */
     (req, res, next) => {
         validateResult(req, res, next)
     },

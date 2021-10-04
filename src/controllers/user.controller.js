@@ -46,29 +46,42 @@ export const createUser = async (req, res) => {
 //rastreo un dato por id
 export const findOneUser = async (req, res) => {
   try {
-    const { id } = req.params;
-    const user = await User.findById(id);
-    if (!user)
-      return res
-        .status(404)
-        .json({ message: `User with id: ${id}, does not exist` });
-    res.json(user);
+    const {id} = req.body;
+    const user = await User.findOne({id});
+    console.log(user);
+    let response = [];
+    response.push({
+        _id: user._id,
+        email: user.email,
+        profile: user.profile,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      })
+    console.log(response);
+    res.json(response);
   } catch (error) {
     res.status(500).json({
-      message: error.message || `Error retrieving the user with id: ${id}`,
+      message: error.message || "Uups something goes wrong searching the user",
     });
   }
 };
 
-// Rastreo un dato por email -- falta condicionar la busqueda
+// Rastreo un dato por email
 export const findUser = async (req, res) => {
-  debugger
-  console.log(req);
   try {
     const {email} = req.body;
     const user = await User.findOne({email});
     console.log(user);
-    res.json(user);
+    let response = [];
+    response.push({
+        _id: user._id,
+        email: user.email,
+        profile: user.profile,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      })
+    console.log(response);
+    res.json(response);
   } catch (error) {
     res.status(500).json({
       message: error.message || "Uups something goes wrong searching the user",

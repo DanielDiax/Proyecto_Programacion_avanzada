@@ -14,7 +14,7 @@ const router = Router();
 
 router.get("/", userCtrl.findGetAllUser);
 
-router.get("/:id", userCtrl.findOneUser);
+router.post("/user", userCtrl.findOneUser);
 
 router.post("/profile", userCtrl.findAllTrueUsers);
 
