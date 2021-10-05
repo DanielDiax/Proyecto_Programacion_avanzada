@@ -1,17 +1,15 @@
 # Proyecto_Programacion_avanzada
 Proyecto a calificar de programación avanzada, back en node.js server en mongo y front-end en react material-ui
+-
+npm i para iniciar
+-
+modulos
 
--
-El proyecto pide varios modulos adicionales para ser funcional, entre ellos destaca babel, 
-modulo que me vi en la obligacion de instalar para ejecutar el proyecto desde el ordenador del trabajo.
-Este mismo debe ser instalado de la siguiente manera ya que las dependencias las estoy dejando a parte, no seran utilizadas en produccion, solo en desarrollo.
--
-npm i @babel/core @babel/cli @babel/node @babel/preset-env -D
--
-Ademas de: 
+babel
 cors 
 dotenv 
 express
+express validator
 mongoose
 mongoose-paginate-v2 
 morgan 
