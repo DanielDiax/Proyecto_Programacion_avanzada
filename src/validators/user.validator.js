@@ -6,14 +6,26 @@ import { validateResult } from '../helpers/validatehelper'
 
 
 export const validateCreateUser = [
+    check('name')
+    .not()
+    .isEmpty(),
     check('email')
     .exists()
     .isEmail()
     .isLowercase()
     .not()
     .isEmpty(),
+    check('country')
+    .isAlpha()
+    .not()
+    .isEmpty(),
+    check('city')
+    .isAlpha()
+    .not()
+    .isEmpty(),
     check('password')
     .exists()
+    .isAlphanumeric()
     .isLength({ min: 8, max: 12 })
     .not()
     .isEmpty(),

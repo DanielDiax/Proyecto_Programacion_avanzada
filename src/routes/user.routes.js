@@ -22,8 +22,8 @@ router.post("/",validateCreateUser, userCtrl.createUser);
 
 router.post('/login',validateOneUser, userCtrl.findUser);
 
-router.delete("/:id",validateEliminateUser, userCtrl.deleteUser);
+router.delete("/:id", userCtrl.deleteUser);
 
-router.put("/:id",validateUpdateUser, userCtrl.updateUser);
+router.put("/update/:id",validateUpdateUser, userCtrl.updateUser);
 
 export default router;

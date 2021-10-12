@@ -4,6 +4,10 @@ import  mongoosePaginate  from "mongoose-paginate-v2";
 
 const userSchema = new Schema(
   {
+    name:{
+      type: String,
+      required: true,
+    },
     email: {
       // de esta manera puedo dar las condiciones de los parametros
       type: String,
@@ -11,6 +15,14 @@ const userSchema = new Schema(
       lowercase: true,
       required: true,
       trim: true, // el trim por ejemplo quita los espacios que trae un parametro de tipo texto
+    },
+    country:{
+      type: String,
+      required: true,
+    },
+    city:{
+      type: String,
+      required: true,
     },
     password: {
       type: String,
@@ -20,6 +32,9 @@ const userSchema = new Schema(
       type: Boolean,
       /* required: false, */
       default: false,
+    },
+    shopName:{
+      type: String,
     },
   },
   {

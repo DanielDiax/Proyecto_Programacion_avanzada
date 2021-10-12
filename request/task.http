@@ -16,20 +16,14 @@ GET http://localhost:3000/api/users?page=1&size=4
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
-{   
-    "email": "juliana@api.com",
-    "password": "123456789",
-    "profile": "true"
-}
+{   "name": "Diana Diaz",
+    "email": "diana@api.com",
+    "country": "Colombia",
+    "city": "Medellin",
+    "password": "1010101010",
+    "profile": "true",
+    "shopName": "CamelShop"
 
-###
-
-//Consulta un unico dato por id //
-POST http://localhost:3000/api/users/user
-Content-Type: application/json
-
-{
-    "_id": "6149e19015bcf9c2623ffdce"
 }
 
 ###
@@ -39,14 +33,16 @@ POST    http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {   
-    "email": "juliana@api.com"
+    "email": "diana@api.com"
 }
 ###
 
 //elimina dato por id
-DELETE http://localhost:3000/api/users/61572913af3090dca3e98fa0
+DELETE http://localhost:3000/api/users/6148e815a86a82d9b2d1fca2
 
 ###
+
+
 
 //Consulta todos los usuarios con perfil true
 GET http://localhost:3000/api/users/profile
@@ -54,10 +50,10 @@ GET http://localhost:3000/api/users/profile
 
 ###
 //Actualizar usuario
-PUT  http://localhost:3000/api/users/6148e815a86a82d9b2d1fca2
+PUT  http://localhost:3000/api/users/update/6149015fef129e20cc3ae706
 Content-Type: application/json
 
-{   "email": "sola@api.com",
-    "password": "123456789",
+{   "email": "sol@api.com",
+    "password": "20202020",
     "profile": "true"
 }
