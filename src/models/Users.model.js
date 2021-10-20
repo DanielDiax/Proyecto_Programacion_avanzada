@@ -27,6 +27,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       trim: true,
+      required: true,
     },
     profile: {
       type: Boolean,
