@@ -3,3 +3,5 @@ export const getPagination = (page, size ) => { // Se reciben por ejemplo la can
     const offset = page ? page * limit : 0; //se has pasado un numero de pagina, se devuelve esa pagina, en caso contrario se pasa 0 -- esto con la intension de controlar los saltos de pagina.
     return {limit, offset};
 }
+
+//Esta configuracion debe funcionar para todos los controladore que necesiten usarla
