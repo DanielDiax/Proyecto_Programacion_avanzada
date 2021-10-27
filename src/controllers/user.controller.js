@@ -79,23 +79,29 @@ export const findUser = async (req, res) => {
   try {
     const {email} = req.body;
     const user = await User.findOne({email});
+    console.log(user)
     if(!user){
       console.log("This Email does not exist.");
+      res.json("This Email does not exist.");
+    }else{
+      let response = [];
+      response.push({
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          country: user.country,
+          city: user.city,
+          profile: user.profile,
+          shopName: user.profile,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt
+        })
+      console.log(response);
+      res.json(response);
     }
-    let response = [];
-    response.push({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        country: user.country,
-        city: user.city,
-        profile: user.profile,
-        shopName: user.profile,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt
-      })
-    console.log(response);
-    res.json(response);
+    if(user == null){
+      console.log("si pilla mk")
+    }
   } catch (error) {
     res.status(500).json({
       message: error.message || "Uups something goes wrong searching the user",
@@ -106,12 +112,19 @@ export const findUser = async (req, res) => {
 //eliminar un dato por metodo delete a travez del parametro id
 export const deleteUser = async (req, res) => {
   try {
-    const { id } = req.params;
-    const detelted = await User.findByIdAndDelete(id);
-    console.log(detelted);
-    res.json({
+    const {email} = req.body;
+    const user = await User.findOne({email});
+    if(!user){
+      res.json("This User does not exist.");
+      console.log("This User does not exist.");
+    }else{
+      const { id } = req.params;
+      const detelted = await User.findByIdAndDelete(id);
+      console.log(detelted);
+      res.json({
       message: " User were deleted successfully",
     });
+    }
   } catch (error) {
     res.status(500).json({
       message: error.message || `Cannot delete user with id: ${id}`,
@@ -133,13 +146,11 @@ export const findAllTrueUsers = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    const {email} = req.body;
-    const user = await User.findOne({email});
+    const {id} = req.body;
+    const user = await User.findOne({id});
+    console.log(user)
     if(!user){
-      console.log("This Email does not exist.");
-      res.json({
-        message: " This Email does not exist.",
-        });
+      res.json({message: "This user does not exist."});
     }else{
       await User.findByIdAndUpdate(req.params.id, req.body); // En este ejemplo se actualiza lo que esta en request params id por lo que se envia desde req.body
       res.json({

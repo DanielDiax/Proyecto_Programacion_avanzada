@@ -4,6 +4,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import userRoutes from "./routes/user.routes";
+import productsRoutes from "./routes/products.routes";
 
 const app = express();
 //settings
@@ -22,6 +23,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/products", productsRoutes);
+
 
 export default app;
 
