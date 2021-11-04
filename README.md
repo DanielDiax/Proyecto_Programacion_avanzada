@@ -1,7 +1,7 @@
 # Proyecto_Programacion_avanzada
 Proyecto a calificar de programación avanzada, back en node.js server en mongo y front-end en react material-ui
 -
-npm i para iniciar
+yarn para iniciar
 -
 modulos
 
@@ -14,6 +14,7 @@ mongoose
 mongoose-paginate-v2 
 morgan 
 nodemon
+entre otros
 
 Algunos de estos modulos son opcionales para crear un proyecto como este, pero por temas dicacticos quise agregarlos y provar su funcionalidad. 
 
