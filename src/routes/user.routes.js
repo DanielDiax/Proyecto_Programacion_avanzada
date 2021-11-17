@@ -12,11 +12,11 @@ const router = Router();
 // o un texto como profile o login el programa creera que todos son id.
 // teniendo esto en cuenta las consultas con id deben ir de ultimo
 
-router.get("/", userCtrl.findGetAllUser);
+router.get("/", userCtrl.findAllUser);
 
 router.post("/user", userCtrl.findOneUser);
 
-router.post("/profile", userCtrl.findAllTrueUsers);
+router.get("/sellerprofile", userCtrl.findAllTrueUsers);
 
 router.post("/",validateCreateUser, userCtrl.createUser);
 

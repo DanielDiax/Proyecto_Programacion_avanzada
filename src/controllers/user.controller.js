@@ -2,7 +2,7 @@ import User from "../models/Users.model";
 import { getPagination } from "../libs/getPagination"; // se importa la funcion de paginacion 
 
 //rastreo todos los datos
-export const findGetAllUser = async (req, res) => {
+export const findAllUser = async (req, res) => {
   try {
     // se crea el query, que es como un parametro extra de la url. Por lo tanto lo primero es extraer los valores a travez del query siendo size = limit, page = offset
     const { page, size } = req.query; 
@@ -30,7 +30,11 @@ export const createUser = async (req, res) => {
     const {email} = req.body;
     const user = await User.findOne({email});
     if(user){
-      console.log("The Email is already in use.");
+      let response = {
+        message: 'The Email is already in use.',
+        icon: 'warning'
+      }
+      res.json(response);
     }
     const newuser = new User({
       name: req.body.name,
@@ -38,15 +42,19 @@ export const createUser = async (req, res) => {
       country: req.body.country,
       city: req.body.city,
       password: req.body.password,
-      profile: req.body.profile ? req.body.profile : false, // compruebo existencia de profile con operador ternario
-      shpName: req.body.shopName
+      profile: req.body.profile == "true" ? req.body.profile : false, // compruebo existencia de profile con operador ternario
+      shopName: req.body.shopName
     });
     const saveuser = await newuser.save();
     console.log(saveuser); // solo de prueba, en teoria se podria dejar desde el await
-    res.json("New user created");
+    let response = {
+      message: 'New user created',
+      icon: 'success'
+    }
+    res.json(response);
   } catch (error) {
     res.status(500).json({
-      message: error.message || "Uups something goes wrong creating the user",
+      message: error.message|| "Uups something goes wrong creating the user",
     });
   }
 };
@@ -100,7 +108,7 @@ export const findUser = async (req, res) => {
       res.json(response);
     }
     if(user == null){
-      console.log("si pilla mk")
+      res.json("No hay datos.");
     }
   } catch (error) {
     res.status(500).json({
@@ -133,10 +141,34 @@ export const deleteUser = async (req, res) => {
 };
 
 export const findAllTrueUsers = async (req, res) => {
-  // aca busco de nuevo todas las tareas/usuarios pero solo devuelvo los que son true
+  // aca busco de nuevo todas los usuarios pero solo devuelvo los que son true
   try {
-    const users = await User.find({ profile: true });
-    res.json(users);
+    //const {profile} = req.body;
+    const users = await User.find({profile: true});
+    if(!users){
+      console.log("Don't have sellers.");
+      res.json("Don't have sellers.");
+    }else{
+      let response = [];
+        users.forEach(element => {
+          response.push({
+            _id: element._id,
+            name: element.name,
+            email: element.email,
+            country: element.country,
+            city: element.city,
+            profile: element.profile,
+            shopName: element.shopName,
+            createdAt: element.createdAt,
+            updatedAt: element.updatedAt
+          })
+        });
+      console.log('yhgbvuhgjg',response);
+      res.json(response);
+    }
+    if(users == null){
+      res.json("No hay datos.");
+    }
   } catch (error) {
     res.status(500).json({
       message: error.message || "Uups something goes wrong searching the user",
@@ -164,3 +196,16 @@ export const updateUser = async (req, res) => {
     });
   }
 };
+
+
+
+
+/* try {
+  const users = await User.find({ profile: true });
+  res.json(users);
+  console.log(users);
+} catch (error) {
+  res.status(500).json({
+    message: error.message || "Uups something goes wrong searching the user",
+  });
+} */

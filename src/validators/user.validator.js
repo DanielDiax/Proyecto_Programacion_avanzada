@@ -26,7 +26,7 @@ export const validateCreateUser = [
     check('password')
     .exists()
     .isAlphanumeric()
-    .isLength({ min: 8, max: 12 })
+    .isLength({ min: 6, max: 21 })
     .not()
     .isEmpty(),
     (req, res, next) => {

@@ -37,14 +37,14 @@ Content-Type: application/json
 ###
 
 //elimina dato por id
-DELETE http://localhost:3000/api/users/6149015fef129e20cc3ae700
+DELETE http://localhost:3000/api/users/617c9c69da369aa90384f6f3
 
 ###
 
 
 
 //Consulta todos los usuarios con perfil true
-GET http://localhost:3000/api/users/profile
+GET http://localhost:3000/api/users/sellerprofile
 
 
 ###
