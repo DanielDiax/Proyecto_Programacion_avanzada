@@ -8,11 +8,12 @@ POST http://localhost:3000/api/products/newproduct
 Content-Type: application/json
 
 {
-    "productBarCode": "006",
-    "productName": "Azucar",
-    "productDescription": "Pa podrir dientes",
-    "price": "2900",
-    "storage": "115"
+    "productBarCode": "014",
+    "productName": "arepas",
+    "productDescription": "que no falte al desayuno",
+    "price": "1200",
+    "storage": "35",
+    "shopName": "CaliBacks"
 }
 
 ###
@@ -22,24 +23,36 @@ POST    http://localhost:3000/api/products/findproduct
 Content-Type: application/json
 
 {
-    "productBarCode": "006"
+    "productBarCode": "008"
 }
 
 
 ###
+//Consultar productos por tienda
+POST http://localhost:3000/api/products/searchproductsbyshop
+Content-Type: application/json
+
+
+{
+    "shopName": "Camshop"
+}
+
+###
+
 
 //elimina dato por id
 DELETE http://localhost:3000/api/products/deleteproduct/6178690b4f3372da637d62e1
 
 ###
 //Actualizar Producto por id
-PUT  http://localhost:3000/api/products/updateproduct/617873fc5f070df0eed76499
+PUT  http://localhost:3000/api/products/updateproduct/61a3f3d22afb6581cc20bb29
 Content-Type: application/json
 
 {
-    "productBarCode": "006",
-    "productName": "Azucar",
-    "productDescription": "Pa endulzar la vida",
-    "price": "2900",
-    "storage": "115"
+    "productBarCode": "009",
+    "productName": "Arepas",
+    "productDescription": "La Sonsoneña",
+    "price": "2150",
+    "storage": "65",
+    "shopName": "Camshop"
 }

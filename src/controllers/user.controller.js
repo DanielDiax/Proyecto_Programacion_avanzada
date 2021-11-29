@@ -100,7 +100,7 @@ export const findUser = async (req, res) => {
           country: user.country,
           city: user.city,
           profile: user.profile,
-          shopName: user.profile,
+          shopName: user.shopName,
           createdAt: user.createdAt,
           updatedAt: user.updatedAt
         })
@@ -163,7 +163,6 @@ export const findAllTrueUsers = async (req, res) => {
             updatedAt: element.updatedAt
           })
         });
-      console.log('yhgbvuhgjg',response);
       res.json(response);
     }
     if(users == null){
@@ -196,16 +195,3 @@ export const updateUser = async (req, res) => {
     });
   }
 };
-
-
-
-
-/* try {
-  const users = await User.find({ profile: true });
-  res.json(users);
-  console.log(users);
-} catch (error) {
-  res.status(500).json({
-    message: error.message || "Uups something goes wrong searching the user",
-  });
-} */

@@ -43,9 +43,10 @@ export const createProduct = async (req, res) => {
         productDescription: req.body.productDescription,
         price: req.body.price,
         storage: req.body.storage,
+        shopName: req.body.shopName
         });
         const saveproduct = await newproduct.save();
-        console.log(saveproduct); // solo de prueba, en teoria se podria dejar desde el await
+        console.log(saveproduct);
         res.json("New product created");
         }
       }
@@ -72,6 +73,7 @@ export const createProduct = async (req, res) => {
             productDescription: product.productDescription,
             price: product.price,
             storage: product.storage,
+            shopName: product.shopName,
             createdAt: product.createdAt,
             updatedAt: product.updatedAt
           })
@@ -85,6 +87,41 @@ export const createProduct = async (req, res) => {
     }
   };
   
+
+  export const findProductsByShop = async (req, res) => {
+    try {
+      const {shopName} = req.body;
+      const products = await Product.find({shopName});
+      console.log(products)
+      if(!products){
+        console.log("Don't have products.");
+        res.json("Don't have products.");
+      }else{
+        let response = [];
+        products.forEach(product => {
+          response.push({
+            _id: product._id,
+            productBarCode: product.productBarCode,
+            productName: product.productName,
+            productDescription: product.productDescription,
+            price: product.price,
+            storage: product.storage,
+            shopName: product.shopName,
+            createdAt: product.createdAt,
+            updatedAt: product.updatedAt
+          })
+        });
+        console.log(response);
+        res.json(response);
+      }
+    }catch (error) {
+      res.status(500).json({
+        message: error.message || "Uups something goes wrong searching the products",
+      });
+    }
+  };
+  
+
 
   //Elimino producto por ID
   export const deleteProduct = async (req, res) => {

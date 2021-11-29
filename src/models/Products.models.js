@@ -7,6 +7,7 @@ const productSchema = new Schema(
     productBarCode: {
         type: Number,
         required: true,
+        unique: true
       },
     productName: {
       type: String,
@@ -24,6 +25,10 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
+    shopName: {
+      type: String,
+      required: true,
+    }
   },
   {
     versionKey: false,
